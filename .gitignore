@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+.state.json
+*.egg-info/
+dist/
+build/
+.env
+.DS_Store
+browser-automation-platform

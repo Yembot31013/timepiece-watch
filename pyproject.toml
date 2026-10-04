@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "timepiece-watch"
+version = "0.1.0"
+description = "Personal Timepiece ticket availability watcher for FIXR"
+requires-python = ">=3.11"
+readme = "README.md"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=5.0.0",
+]
+
+[project.scripts]
+timepiece-watch = "timepiece_watch.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "."]
+addopts = [
+    "--strict-markers",
+    "--cov=timepiece_watch",
+    "--cov-report=term-missing",
+    "--cov-fail-under=80",
+]
+markers = [
+    "integration: hits the live FIXR API",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["timepiece_watch"]
+
+[tool.coverage.report]
+omit = ["src/timepiece_watch/cli.py", "src/timepiece_watch/__main__.py"]
+show_missing = true
+
+[tool.pyrefly]
+preset = "basic"
+search-path = [".", "src"]
+
+

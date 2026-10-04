@@ -1,0 +1,16 @@
+[Unit]
+Description=Timepiece FIXR ticket watcher
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+WorkingDirectory=__PROJECT_DIR__
+ExecStart=__PROJECT_DIR__/.venv/bin/python -m timepiece_watch watch
+Restart=always
+RestartSec=15
+TimeoutStopSec=20
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=default.target
